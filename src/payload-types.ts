@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    simulaciones: Simulacione;
+    bk_speaker_media: BkSpeakerMedia;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +80,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    simulaciones: SimulacionesSelect<false> | SimulacionesSelect<true>;
+    bk_speaker_media: BkSpeakerMediaSelect<false> | BkSpeakerMediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -160,6 +164,47 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "simulaciones".
+ */
+export interface Simulacione {
+  id: string;
+  nombre?: string | null;
+  apellido?: string | null;
+  email?: string | null;
+  empresa?: string | null;
+  website?: string | null;
+  descripcion_del_negocio?: string | null;
+  nivel_de_responsabilidad?: string | null;
+  pregunta1?: string | null;
+  tiempo1?: number | null;
+  pregunta2?: string | null;
+  tiempo2?: number | null;
+  pregunta3?: string | null;
+  tiempo3?: number | null;
+  categoria?: string | null;
+  tiempo_total?: number | null;
+  fecha_de_envio?: string | null;
+  videoId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bk_speaker_media".
+ */
+export interface BkSpeakerMedia {
+  id: string;
+  pregunta?: string | null;
+  categoria?: string | null;
+  id_excel?: string | null;
+  tipo_de_pregunta?: string | null;
+  estatus?: string | null;
+  ultima_modificacion?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -189,6 +234,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'simulaciones';
+        value: string | Simulacione;
+      } | null)
+    | ({
+        relationTo: 'bk_speaker_media';
+        value: string | BkSpeakerMedia;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -271,6 +324,45 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "simulaciones_select".
+ */
+export interface SimulacionesSelect<T extends boolean = true> {
+  nombre?: T;
+  apellido?: T;
+  email?: T;
+  empresa?: T;
+  website?: T;
+  descripcion_del_negocio?: T;
+  nivel_de_responsabilidad?: T;
+  pregunta1?: T;
+  tiempo1?: T;
+  pregunta2?: T;
+  tiempo2?: T;
+  pregunta3?: T;
+  tiempo3?: T;
+  categoria?: T;
+  tiempo_total?: T;
+  fecha_de_envio?: T;
+  videoId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bk_speaker_media_select".
+ */
+export interface BkSpeakerMediaSelect<T extends boolean = true> {
+  pregunta?: T;
+  categoria?: T;
+  id_excel?: T;
+  tipo_de_pregunta?: T;
+  estatus?: T;
+  ultima_modificacion?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
