@@ -2,7 +2,9 @@ import { CollectionConfig } from 'payload';
 
 const Simulaciones: CollectionConfig = {
     slug: 'simulaciones',
-
+  access: {
+    read: () => true,
+  },
     fields: [
         {
             name: 'nombre',
